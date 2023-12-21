@@ -2,6 +2,7 @@
 
 Progetto del corso di Analisi e progettazione del software per l'anno accademico 2023-2024. 
 
+Realizzato da
 
 ## Descrizione di questo progetto 
 
