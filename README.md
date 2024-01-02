@@ -2,7 +2,7 @@
 
 Progetto del corso di Analisi e progettazione del software per l'anno accademico 2023-2024. 
 
-Realizzato da
+Realizzato da Daniele Ferneti, Matteo Cardilli, Gianluca Farinaccio ed Alexis Martinez.
 
 ## Descrizione di questo progetto 
 
