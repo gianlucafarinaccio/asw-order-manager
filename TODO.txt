@@ -23,7 +23,7 @@ FACOLTATIVO:
 -------------------
 
 Gianluca 1 - branch db
-Daniele 2
+Daniele 2 - branch support/order-validation-refactoring
 Alexis 2
 Cardilli 3
 Da definire 4
