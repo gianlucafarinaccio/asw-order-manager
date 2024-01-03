@@ -3,6 +3,18 @@
 spring: 
   application: 
     name: productservice
+  datasource:
+    url: jdbc:postgresql://localhost:5434/product-service
+    username: product-service
+    password: postgres
+  jpa:
+    database: POSTGRESQL
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: create
+
   # CONSUL 
   cloud:
     consul:

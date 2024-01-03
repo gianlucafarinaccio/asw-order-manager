@@ -5,8 +5,8 @@ spring:
     name: orderservice
 
   datasource:
-    url: jdbc:postgresql://localhost:5432/order-service
-    username: postgres
+    url: jdbc:postgresql://localhost:5433/order-service
+    username: order-service
     password: postgres
   jpa:
     database: POSTGRESQL

@@ -2,4 +2,4 @@
 
 echo Halting all running java processes  
 
-pkill -e -f 'java'
+pkill  -f 'java'
