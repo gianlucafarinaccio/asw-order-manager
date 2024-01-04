@@ -1,24 +1,31 @@
 package asw.ordermanager.ordervalidationservice.domain;
 
-import java.util.*; 
+import java.util.*;
 
-import lombok.*; 
+import jakarta.persistence.*;
 
-/* Ordine. */ 
-@Data 
+import lombok.*;
+
+/* Ordine. */
+@Entity
+@Data
 @NoArgsConstructor @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Order implements Comparable<Order> {
 
+	@Id
 	@EqualsAndHashCode.Include
-	private Long id; 	
-	private String customer; 
-	private List<OrderItem> orderItems;
-	private double total; 
+	private Long id;
+
+	private String customer;
+
+	@OneToMany
+	private List<Product> orderItems;
+
 
 	@Override
 	public int compareTo(Order other) {
-		return this.id.compareTo(other.id); 
+		return this.id.compareTo(other.id);
 	}
-	
+
 }
