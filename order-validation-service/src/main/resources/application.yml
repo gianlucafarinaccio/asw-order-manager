@@ -6,7 +6,7 @@ spring:
   # CONSUL 
   cloud:
     consul:
-      host: localhost
+      host: consul
       port: 8500
       discovery: 
         instanceId: ${spring.application.name}-${spring.cloud.client.hostname}-${random.value}
@@ -21,8 +21,8 @@ spring:
       ribbon.enabled: false 
 
 server: 
-  port: ${PORT:${SERVER_PORT:0}}
-#  port: 8080
+#  port: ${PORT:${SERVER_PORT:0}}
+  port: 8080
 #  port: 8083 
   # per swagger dietro un api gateway 
   forward-headers-strategy: framework
