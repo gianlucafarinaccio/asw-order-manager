@@ -1,0 +1,42 @@
+version: '3.1'
+
+services:
+
+  order-service-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    volumes:
+      - "./postgres/order-service/data:/var/lib/postgresql/data"
+      - "./postgres/order-service:/docker-entrypoint-initdb.d"
+    ports:
+      - "5433:5432"
+
+  product-service-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    volumes:
+      - "./postgres/product-service/data:/var/lib/postgresql/data"
+      - "./postgres/product-service:/docker-entrypoint-initdb.d"
+    ports:
+      - "5434:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: asw-project@admin.com
+      PGADMIN_DEFAULT_PASSWORD: postgres
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  pgadmin-data:
