@@ -48,13 +48,6 @@ public class OrderValidationServiceRestBasedImpl implements OrderValidationServi
 		return new OrderValidation(id, order, isValid, motivation);
 	}
 
-	private List<String> toProductNames(List<OrderItem> items) {
-		List<String> names =
-				items.stream()
-						.map(item -> item.getProduct())
-						.collect(Collectors.toList());
-		return names;
-	}
 
 	private Map<String,Product> toProductMap(List<Product> products) {
 		Map<String,Product> map =

@@ -2,6 +2,7 @@ package asw.ordermanager.ordervalidationservice.orderserviceclient;
 
 import asw.ordermanager.ordervalidationservice.domain.*;
 
+
 import asw.ordermanager.orderservice.api.rest.*;
 
 import org.springframework.stereotype.Service;
