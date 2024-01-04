@@ -7,7 +7,10 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: order-service
+      POSTGRES_USER: postgres
+    volumes:
+      - "./postgres/order-service/data:/var/lib/postgresql/data"
+      - "./postgres/order-service:/docker-entrypoint-initdb.d"
     ports:
       - "5433:5432"
 
@@ -16,6 +19,9 @@ services:
     restart: always
     environment:
       POSTGRES_PASSWORD: postgres
-      POSTGRES_USER: product-service
+      POSTGRES_USER: postgres
+    volumes:
+      - "./postgres/product-service/data:/var/lib/postgresql/data"
+      - "./postgres/product-service:/docker-entrypoint-initdb.d"
     ports:
       - "5434:5432"
