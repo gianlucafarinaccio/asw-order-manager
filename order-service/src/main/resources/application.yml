@@ -3,6 +3,19 @@
 spring: 
   application: 
     name: orderservice
+
+  datasource:
+    url: jdbc:postgresql://localhost:5433/orderservice
+    username: postgres
+    password: postgres
+  jpa:
+    database: POSTGRESQL
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+
   # CONSUL 
   cloud:
     consul:

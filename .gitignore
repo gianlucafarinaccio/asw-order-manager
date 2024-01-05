@@ -284,4 +284,7 @@ gradle-app.setting
 # Java heap dump
 *.hprof
 
+### Postgres db files
+/postgres/**/data
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,linux,java,intellij,gradle,eclipse
