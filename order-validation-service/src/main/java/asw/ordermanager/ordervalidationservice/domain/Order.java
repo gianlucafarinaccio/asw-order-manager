@@ -8,12 +8,14 @@ import lombok.*;
 
 /* Ordine. */
 @Entity
+@Table(name= "VALID_ORDERS")
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Order implements Comparable<Order> {
 
 	@Id
+	@GeneratedValue
 	@EqualsAndHashCode.Include
 	private Long id;
 

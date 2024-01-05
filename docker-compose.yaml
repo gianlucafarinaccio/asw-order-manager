@@ -26,6 +26,20 @@ services:
     ports:
       - "5434:5432"
 
+
+  order-validation-service-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - "./postgres/order-validation-service/data:/var/lib/postgresql/data"
+      - "./postgres/order-validation-service:/docker-entrypoint-initdb.d"
+    ports:
+      - "5435:5432"
+
+
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4_container

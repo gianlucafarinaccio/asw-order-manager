@@ -5,6 +5,7 @@ import lombok.*;
 
 /* Prodotto con inventario. */
 @Entity
+@Table(name = "VALID_PRODUCTS")
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
