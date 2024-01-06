@@ -3,7 +3,8 @@
 spring: 
   application: 
     name: ordervalidationservice
-  # CONSUL 
+
+  # CONSUL
   cloud:
     consul:
       host: consul

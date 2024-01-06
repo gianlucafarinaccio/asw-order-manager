@@ -3,6 +3,8 @@
 spring: 
   application: 
     name: apigateway
+
+  # CONSUL
   cloud:
     consul:
       host: consul
