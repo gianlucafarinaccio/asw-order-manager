@@ -37,7 +37,7 @@ services:
       - order-service-db-data:/var/lib/postgresql/data
       - "./postgres/order-service:/docker-entrypoint-initdb.d"
     ports:
-      - "5432"
+      - "5433:5432"
     depends_on:
       - "consul"
     networks:
@@ -97,6 +97,7 @@ services:
       - "./postgres/order-validation-service:/docker-entrypoint-initdb.d"
     ports:
       - "5435:5432"
+
   apigateway:
     container_name: apigateway
     build: ./api-gateway
@@ -124,6 +125,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: postgres
     volumes:
       - pgadmin-data:/var/lib/pgadmin
+
 volumes:
   order-service-db-data:
     name: order-service-db-data
