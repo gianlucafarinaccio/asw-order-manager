@@ -34,14 +34,13 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_DB: orderservice
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
     volumes:
-      - pgdata:/var/lib/postgresql/data #TODO
+      - order-service-db-data:/var/lib/postgresql/data
       - "./postgres/order-service:/docker-entrypoint-initdb.d"
     ports:
-      - "5432:5432" #TODO
+      - ":5433:5432" #TODO
     depends_on:
       - "consul"
     networks:
@@ -69,14 +68,13 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_DB: productservice
       POSTGRES_PASSWORD: postgres
       POSTGRES_USER: postgres
     volumes:
-      - pgdata1:/var/lib/postgresql/data #TODO
+      - product-service-db-data:/var/lib/postgresql/data
       - "./postgres/product-service:/docker-entrypoint-initdb.d"
     ports:
-      - "5434:5432" #TODO
+      - "5432" #TODO
     depends_on:
       - "consul"
     networks:
@@ -101,10 +99,17 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - "consul"
+      consul:
+        condition: service_started
+      product-service:
+        condition: service_started
+      order-service:
+        condition: service_started
     networks:
       - default
 
 volumes:
-  pgdata: #TODO
-  pgdata1: #TODO
+  order-service-db-data:
+    name: order-service-db-data
+  product-service-db-data:
+    name: product-service-db-data
