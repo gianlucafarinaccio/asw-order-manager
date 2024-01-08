@@ -5,21 +5,22 @@ spring:
     name: orderservice
 
   datasource:
-    url: jdbc:postgresql://localhost:5433/orderservice
+    url: jdbc:postgresql://localhost:5432/orderservice
     username: postgres
     password: postgres
+
   jpa:
     database: POSTGRESQL
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+          dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
 
   # CONSUL 
   cloud:
     consul:
-      host: localhost
+      host: consul
       port: 8500
       discovery: 
         instanceId: ${spring.application.name}-${spring.cloud.client.hostname}-${random.value}
@@ -34,8 +35,9 @@ spring:
       ribbon.enabled: false 
 
 server: 
-  port: ${PORT:${SERVER_PORT:0}} # utilizzo di una porta casuale ad ogni avvio del servizio, locazione non nota a priori
-
+#  port: ${PORT:${SERVER_PORT:0}}
+  port: 8080
+#  port: 8081 
   # per swagger dietro un api gateway 
   forward-headers-strategy: framework
   

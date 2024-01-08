@@ -25,8 +25,5 @@ FACOLTATIVO:
 Gianluca 1 - branch support/database-refactoring
 Daniele 2 - branch support/order-validation-refactoring
 Alexis 2 - branch support/order-validation-refactoring
-Cardilli 3
+Cardilli 3 - branch support/microservices-containerization
 Da definire 4
-
-TEST PUSH SU ENTRAMBI LE REPO!
-PROVA NUMERO 2

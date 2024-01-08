@@ -3,9 +3,11 @@
 spring: 
   application: 
     name: apigateway
+
+  # CONSUL
   cloud:
     consul:
-      host: localhost
+      host: consul
       port: 8500
       discovery: 
         instanceId: ${spring.application.name}-${spring.cloud.client.hostname}-${random.value}
