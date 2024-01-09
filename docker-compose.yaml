@@ -37,7 +37,7 @@ services:
       - order-service-db-data:/var/lib/postgresql/data
       - "./postgres/order-service:/docker-entrypoint-initdb.d"
     ports:
-      - "5433:5432"
+      - "5432"
     depends_on:
       - "consul"
     networks:
@@ -68,7 +68,7 @@ services:
       - product-service-db-data:/var/lib/postgresql/data
       - "./postgres/product-service:/docker-entrypoint-initdb.d"
     ports:
-      - "5434:5432"
+      - "5432"
     depends_on:
       - "consul"
     networks:
@@ -87,6 +87,7 @@ services:
       - order-manager
 
   order-validation-service-db:
+    container_name: order-validation-service-db
     image: postgres
     restart: always
     environment:
@@ -96,7 +97,11 @@ services:
       - "./postgres/order-validation-service/data:/var/lib/postgresql/data"
       - "./postgres/order-validation-service:/docker-entrypoint-initdb.d"
     ports:
-      - "5435:5432"
+      - "5432"
+    depends_on:
+      - "consul"
+    networks:
+      - order-manager
 
   apigateway:
     container_name: apigateway
@@ -125,6 +130,8 @@ services:
       PGADMIN_DEFAULT_PASSWORD: postgres
     volumes:
       - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - order-manager
 
 volumes:
   order-service-db-data:
@@ -132,3 +139,4 @@ volumes:
   product-service-db-data:
     name: product-service-db-data
   pgadmin-data:
+    name: pgadmin-data-ok
