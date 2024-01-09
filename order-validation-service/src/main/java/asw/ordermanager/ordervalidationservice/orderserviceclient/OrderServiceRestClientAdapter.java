@@ -46,27 +46,36 @@ public class OrderServiceRestClientAdapter implements OrderServiceClientPort {
 		if (or==null) {
 			return null;
 		}
+		List<OrderItemElement> orderItemElements = or.getOrderItems();
+		List<Product> productOrderList= new LinkedList<Product>();
+
+		for (OrderItemElement orderItem : orderItemElements){
+			String productName = orderItem.getProduct();
+			int productOrderQuantity = orderItem.getQuantity();
+			Product product = new Product(productName,productOrderQuantity);
+			productOrderList.add(product);
+		}
 		return new Order(
 				or.getId(),
 				or.getCustomer(),
-				toOrderItems(or.getOrderItems()));
+				toOrderItems(productOrderList));
 	}
 
 	/* Converte un OrderItemElement in un OrderItem. */
-	private Product toOrderItem(OrderItemElement item) {
+	private Product toOrderItem(Product productOrder) {
 		return new Product(
-				item.getProduct(),
-				item.getQuantity());
+				productOrder.getName(),
+				productOrder.getStockLevel());
 	}
 
 	/* Converte una collezione di OrderItemElement in una collezione di OrderItem. */
-	private List<Product> toOrderItems(List<OrderItemElement> items) {
-		List<Product> orderItems =
-				items
+	private List<Product> toOrderItems(List<Product> productOrderList ) {
+		List<Product> products =
+				productOrderList
 						.stream()
-						.map(item -> toOrderItem(item))
+						.map(product -> toOrderItem(product))
 						.collect(Collectors.toList());
-		return orderItems;
+		return products;
 	}
 
 }

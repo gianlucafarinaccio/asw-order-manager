@@ -6,14 +6,15 @@ spring:
 
   # POSTGRESQL
   datasource:
-    url: jdbc:postgresql://localhost:5435/ordervalidationservice
+    url: jdbc:postgresql://localhost:5432/ordervalidationservice
     username: postgres
     password: postgres
+
   jpa:
     database: POSTGRESQL
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+          dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto : update
 

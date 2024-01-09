@@ -11,8 +11,10 @@ import lombok.*;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Product implements Comparable<Product> {
 
-	@EqualsAndHashCode.Include
+
 	@Id
+	@GeneratedValue
+	@EqualsAndHashCode.Include
 	private String name;
 	/* quantità disponibile */
 	private int stockLevel;
