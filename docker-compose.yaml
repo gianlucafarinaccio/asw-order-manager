@@ -81,8 +81,10 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=order-validation-service
       - ASW_ORDERMANAGER_ORDERVALIDATIONSERVICE_INSTANCENAME=ov1
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://order-validation-service-db:5432/ordervalidationservice
     depends_on:
       - "consul"
+      - "order-validation-service-db"
     networks:
       - order-manager
 
@@ -94,7 +96,7 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
-      - "./postgres/order-validation-service/data:/var/lib/postgresql/data"
+      - order-validation-service-db-data:/var/lib/postgresql/data
       - "./postgres/order-validation-service:/docker-entrypoint-initdb.d"
     ports:
       - "5432"
@@ -138,5 +140,7 @@ volumes:
     name: order-service-db-data
   product-service-db-data:
     name: product-service-db-data
+  order-validation-service-db-data:
+    name: order-validation-service-db-data
   pgadmin-data:
     name: pgadmin-data-ok
