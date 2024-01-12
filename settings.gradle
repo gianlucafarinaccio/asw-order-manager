@@ -1,5 +1,7 @@
+include 'order-manager-common-api-event'
 include 'order-service'
 include 'order-service-api'
+include 'order-service-api-event'
 include 'product-service'
 include 'product-service-api'
 include 'order-validation-service'
