@@ -2,19 +2,32 @@ package asw.ordermanager.orderservice.domain;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import asw.ordermanager.api.event.*;
+import asw.ordermanager.common.api.event.DomainEvent;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.*; 
+import java.util.logging.Logger;
 
 @Service
 public class OrderService {
 
+	private final Logger logger = Logger.getLogger(this.getClass().toString());
+
 	@Autowired
 	private OrderRepository orderRepository;
+
+	@Autowired
+	private OrderEventPublisher orderEventPublisher;
 
  	public Order createOrder(String customer, String address, List<OrderItem> orderItems, double total) {
 		Order order = new Order(customer, address, orderItems, total); 
 		order = orderRepository.save(order);
+		DomainEvent event = new OrderCreatedEvent(order.getId(), order.getCustomer(),order.getAddress(),order.getTotal());
+		orderEventPublisher.publish(event);
+        logger.info("Ordine Creato correttamente!");
 		return order;
 	}
 
