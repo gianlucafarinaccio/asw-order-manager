@@ -7,9 +7,6 @@ import java.util.Collection;
 import java.util.*;
 public interface OrderRepository extends CrudRepository<Order, Long> {
 
-    public Collection<Order> findAll();
-
-    public Collection<Order> findyById(Long id);
 
     public Collection<Order> findByCustomer(String customer);
 

@@ -12,7 +12,7 @@ public class OrderValidation {
 	@EqualsAndHashCode.Include
 	private Long id;
 	private String customer;
-	private List<Product> orderItems;
+	private List<OrderItem> orderItems;
 	private boolean isValid;
 	private String motivation;
 

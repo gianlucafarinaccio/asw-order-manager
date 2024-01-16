@@ -13,7 +13,6 @@ public class Product implements Comparable<Product> {
 
 
 	@Id
-	@GeneratedValue
 	@EqualsAndHashCode.Include
 	private String name;
 	/* quantità disponibile */

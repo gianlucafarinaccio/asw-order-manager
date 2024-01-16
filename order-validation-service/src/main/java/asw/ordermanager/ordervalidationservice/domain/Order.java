@@ -15,14 +15,13 @@ import lombok.*;
 public class Order implements Comparable<Order> {
 
 	@Id
-	@GeneratedValue
 	@EqualsAndHashCode.Include
 	private Long id;
 
 	private String customer;
 
 	@OneToMany
-	private List<Product> orderItems;
+	private List<OrderItem> orderItems;
 
 
 	@Override

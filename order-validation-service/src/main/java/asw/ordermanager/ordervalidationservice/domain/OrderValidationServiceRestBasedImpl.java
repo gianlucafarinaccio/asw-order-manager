@@ -25,18 +25,19 @@ public class OrderValidationServiceRestBasedImpl implements OrderValidationServi
 			motivation += "L'ordine " + id + " non esiste.";
 			return new OrderValidation(id, order, false, motivation);
 		}
-		List<Product> productNames = order.getOrderItems();
-		Map<String,Product> productMap = toProductMap(productNames);
+		List<String> productNames = toProductNames(order.getOrderItems());
+		List<Product> products = productServiceClient.getProductsByNames(productNames);
+		Map<String,Product> productMap = toProductMap(products);
 
 		boolean isValid = true;
-		for (Product orderItem: order.getOrderItems()) {
-			String name = orderItem.getName();
+		for (OrderItem orderItem: order.getOrderItems()) {
+			String name = orderItem.getProduct();
 			Product product = productMap.get(name);
 			if (product==null) {
 				isValid = false;
 				motivation += "Il prodotto " + name + " non esiste. ";
 				// break;
-			} else if (product.getStockLevel() < orderItem.getStockLevel()) {
+			} else if (product.getStockLevel() < orderItem.getQuantity()) {
 				isValid = false;
 				motivation += "Il prodotto " + name + " non è disponibile nella quantità richiesta. ";
 				// break;
@@ -48,6 +49,13 @@ public class OrderValidationServiceRestBasedImpl implements OrderValidationServi
 		return new OrderValidation(id, order, isValid, motivation);
 	}
 
+	private List<String> toProductNames(List<OrderItem> items) {
+		List<String> names =
+				items.stream()
+						.map(item -> item.getProduct())
+						.collect(Collectors.toList());
+		return names;
+	}
 
 	private Map<String,Product> toProductMap(List<Product> products) {
 		Map<String,Product> map =

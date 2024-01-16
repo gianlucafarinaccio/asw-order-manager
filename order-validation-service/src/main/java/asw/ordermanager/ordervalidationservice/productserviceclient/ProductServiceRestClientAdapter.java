@@ -42,11 +42,6 @@ public class ProductServiceRestClientAdapter implements ProductServiceClientPort
 		return toProduct(pr);
 	}
 
-	@Override
-	public List<Product> getProducts() {
-		return null;
-	}
-
 	public List<Product> getProductsByNames(List<String> names) {
 		GetProductsByNamesRequest request = new GetProductsByNamesRequest(names);
 		GetProductsResponse pr = null;
