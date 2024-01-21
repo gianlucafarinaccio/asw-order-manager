@@ -45,3 +45,11 @@ server:
 #spring.jpa.show-sql: true
 # disable OSIV
 spring.jpa.open-in-view: false
+
+spring.kafka:
+  bootstrap-servers: kafka:9092
+
+  # KAFKA PRODUCER
+  producer:
+    key-serializer: org.apache.kafka.common.serialization.StringSerializer
+    value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
