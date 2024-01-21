@@ -1,8 +1,11 @@
 # ORDER-MANAGER
 
 Progetto del corso di Analisi e progettazione del software per l'anno accademico 2023-2024. 
-
-Realizzato da Daniele Ferneti, Matteo Cardilli, Gianluca Farinaccio ed Alexis Martinez.
+Realizzato da: 
+* Matteo Cardilli
+* Gianluca Farinaccio
+* Daniele Ferneti
+* Alexis Martinez.
 
 ## Descrizione di questo progetto 
 
@@ -79,19 +82,18 @@ L'applicazione *OrderManager* è composta dai seguenti microservizi:
 
 Per costruire questa applicazione: 
 
-* eseguire il comando `gradle build` 
+* eseguire il comando `gradle build`
+* eseguire il comando `docker compose build`
 
 
 ## Esecuzione 
 
 Per eseguire questa applicazione: 
 
-* avviare *Consul* eseguendo lo script `start-consul.sh` 
+* eseguire il comando `docker compose up` (oppure `docker compose up -d` per eseguirla in background)
 
-* per avviare l'applicazione *OrderManager*, eseguire lo script `run-ordermanager.sh` 
-
-* per inizializzare le basi di dati con alcuni dati di esempio, eseguire gli script `do-init-products.sh` e `do-init-orders.sh` 
-
+**Questa operazione è necessaria soltanto al primo avvio dell'applicazione. Una volta inizializzati i dati, essi saranno salvati in modo permanente all'interno di volumi docker.**
+* Per inizializzare le basi di dati con alcuni dati di esempio, eseguire gli script `do-init-products.sh` e `do-init-orders.sh` 
 
 Sono anche forniti alcuni script di esempio: 
 
@@ -121,9 +123,7 @@ Ed inoltre ancora:
 
 * nota: questi test possono essere utilmente eseguiti in sequenza, senza eseguire prima nessuno degli altri script  
 
-Alla fine, l'applicazione può essere arrestata usando lo script `terminate-java-processes.sh` (**da usare con cautela!**). 
-
-Inoltre, *Consul* può essere arrestato con lo script `stop-consul.sh`. 
+Alla fine, l'applicazione può essere arrestata useguendo il comando `docker compose down`. 
 
 ## Esecuzione con Docker
 
