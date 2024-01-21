@@ -32,7 +32,7 @@ spring:
         # consul deve restituire solo servizi che passano l'health check (default=false) 
         queryPassing: true 
     loadbalancer: 
-      ribbon.enabled: false 
+      ribbon.enabled: false
 
 server: 
 #  port: ${PORT:${SERVER_PORT:0}}
@@ -46,10 +46,10 @@ server:
 # disable OSIV
 spring.jpa.open-in-view: false
 
-kafka:
+spring.kafka:
     bootstrap-servers: kafka:9092
 
-    # KAFKA CONSUMER 
+    # KAFKA CONSUMER
     #consumer:
     #  group-id: ${spring.application.name}
     #  auto-offset-reset: earliest
@@ -61,7 +61,7 @@ kafka:
     #        trusted:
     #          packages: "*"
 
-    # KAFKA PRODUCER 
+    # KAFKA PRODUCER
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer

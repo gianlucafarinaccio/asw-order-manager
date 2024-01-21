@@ -23,6 +23,12 @@ public class Order implements Comparable<Order> {
 	@OneToMany
 	private List<OrderItem> orderItems;
 
+	public Order(String customer, List<OrderItem> orderItems) {
+		this();
+		this.customer = customer;
+		this.orderItems = orderItems;
+	}
+
 
 	@Override
 	public int compareTo(Order other) {
