@@ -17,7 +17,7 @@ public class OrderEventKafkaPublisher implements OrderEventPublisher{
     @Autowired
     private KafkaTemplate<String, DomainEvent> template;
 
-    private String channel = OrderServiceEventChannel.channel; 
+    private String channel = OrderServiceEventChannel.orderCreated;
 
     @Override
     public void publish(DomainEvent event) {

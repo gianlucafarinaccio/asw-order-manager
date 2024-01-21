@@ -27,7 +27,7 @@ public class OrderService {
 		order = orderRepository.save(order);
 		DomainEvent event = new OrderCreatedEvent(order.getId(), order.getCustomer(),order.getAddress(),order.getTotal());
 		orderEventPublisher.publish(event);
-        logger.info("Ordine Creato correttamente!");
+        logger.info("Ordine creato correttamente!");
 		return order;
 	}
 
