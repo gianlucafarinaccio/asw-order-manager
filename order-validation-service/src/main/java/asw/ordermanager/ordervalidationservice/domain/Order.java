@@ -20,15 +20,8 @@ public class Order implements Comparable<Order> {
 
 	private String customer;
 
-	@OneToMany
+	@ElementCollection(fetch = FetchType.EAGER)
 	private List<OrderItem> orderItems;
-
-	public Order(String customer, List<OrderItem> orderItems) {
-		this();
-		this.customer = customer;
-		this.orderItems = orderItems;
-	}
-
 
 	@Override
 	public int compareTo(Order other) {

@@ -1,11 +1,11 @@
 package asw.ordermanager.ordervalidationservice.domain;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.Embeddable;
 import lombok.*;
 
 /* Ordine. */
+@Embeddable
 @Data
-@Entity
 @NoArgsConstructor @AllArgsConstructor
 public class OrderItem {
 
