@@ -17,7 +17,7 @@ public class OrderValidationEventKafkaListener {
     @Autowired
     private OrderValidationEventConsumer orderValidationEventConsumer;
 
-        @KafkaListener(topics = {OrderValidationEventChannel.orderChannel, OrderValidationEventChannel.serviceChannel,OrderValidationEventChannel.StockLevelChannel})
+        @KafkaListener(topics = {OrderValidationEventChannel.orderCreated, OrderValidationEventChannel.productCreated, OrderValidationEventChannel.updateStockLevel})
     public void listen(ConsumerRecord<String, DomainEvent> record)throws Exception {
         logger.info("EVENT LISTENER:" +  record.toString());
         DomainEvent event = record.value();

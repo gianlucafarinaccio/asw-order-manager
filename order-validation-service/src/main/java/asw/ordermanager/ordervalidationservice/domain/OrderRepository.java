@@ -10,7 +10,7 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
 
     public Collection<Order> findByCustomer(String customer);
 
-    public Collection<Order> findByOrderItems_name(String name);
+    public Collection<Order> findByOrderItems_Product(String product);
 
 
 }
