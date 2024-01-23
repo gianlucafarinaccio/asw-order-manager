@@ -13,6 +13,13 @@ public class ProductService {
 	@Autowired
 	private ProductRepository productRepository;
 
+	public Product createProduct(String name,  int stockLevel) {
+		Product product = new Product(name, stockLevel);
+		productRepository.save(product);
+		logger.info("Prodotto replicato correttamente");
+		return product;
+	}
+
 
  	public Product getProduct(String name) {
 		Product product = productRepository.findById(name).orElse(null);
