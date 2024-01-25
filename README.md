@@ -2,7 +2,11 @@
 
 Progetto del corso di Analisi e progettazione del software per l'anno accademico 2023-2024. 
 
-Realizzato da Daniele Ferneti, Matteo Cardilli, Gianluca Farinaccio ed Alexis Martinez.
+Realizzato da:
+- Matteo Cardilli
+- Gianluca Farinaccio
+- Daniele Ferneti
+- Alexis Martinez.
 
 ## Descrizione di questo progetto 
 
@@ -79,20 +83,27 @@ L'applicazione *OrderManager* è composta dai seguenti microservizi:
 
 Per costruire questa applicazione: 
 
-* eseguire il comando `gradle build` 
+* eseguire il comando `gradle build`
+* eseguire il comando `docker compose build` 
 
 
 ## Esecuzione 
 
-Per eseguire questa applicazione: 
+Per avviare questa applicazione: 
+* eseguire il comando `docker compose up -d`
 
-* avviare *Consul* eseguendo lo script `start-consul.sh` 
+> Per verificare che l'applicazione sia stata avviata correttamente (ci vuole circa un minuto) usare il comando `docker ps` per verificare
+> che lo *status* dei diversi container sia *healthy* e non *starting*.
+ 
+* per inizializzare le basi di dati con alcuni dati di esempio, eseguire gli script `do-init-products.sh` e `do-init-orders.sh` <br>
+> L'operazione di inizializzazione è necessaria soltanto al primo avvio dell'applicazione. Una volta inizializzati, tutti i dati relativi ai microservizi
+> verranno salvati in modo persistente all'interno di volumi Docker.
 
-* per avviare l'applicazione *OrderManager*, eseguire lo script `run-ordermanager.sh` 
 
-* per inizializzare le basi di dati con alcuni dati di esempio, eseguire gli script `do-init-products.sh` e `do-init-orders.sh` 
-
-
+Per arrestare l'applicazione: 
+* eseguire il comando `docker compose down`
+  
+## Script
 Sono anche forniti alcuni script di esempio: 
 
 * lo script `do-get-products.sh` trova tutti i prodotti 
@@ -121,6 +132,7 @@ Ed inoltre ancora:
 
 * nota: questi test possono essere utilmente eseguiti in sequenza, senza eseguire prima nessuno degli altri script  
 
+<!---
 Alla fine, l'applicazione può essere arrestata usando lo script `terminate-java-processes.sh` (**da usare con cautela!**). 
 
 Inoltre, *Consul* può essere arrestato con lo script `stop-consul.sh`. 
@@ -136,7 +148,7 @@ In alternativa, è possibile eseguire quest'applicazione tramite Docker:
 Per verificare che l'applicazione sia stata avviata correttamente (ci vuole circa un minuto) usare il comando `docker ps` per verificare che lo *status* dei diversi container sia *healthy* e non *starting*.
 
 Alla fine, l'applicazione può essere arrestata usando lo script `stop-and-remove-order-manager-containers.sh`.
-
+--->
 
 ## Descrizione delle attività da svolgere 
 
