@@ -1,11 +1,14 @@
 package asw.ordermanager.ordervalidationservice.domain;
 import asw.ordermanager.api.event.OrderCreatedEvent;
+import asw.ordermanager.api.event.OrderItemElement;
 import asw.ordermanager.api.event.ProductCreatedEvent;
 import asw.ordermanager.api.event.UpdateStockLevelEvent;
 import asw.ordermanager.common.api.event.DomainEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.*;
 
 @Service
@@ -39,7 +42,12 @@ public class OrderValidationEventConsumer {
     }
 
     private void onOrderCreated(OrderCreatedEvent evt) {
-        orderService.createOrder(evt.getId(), evt.getCustomer(), null);
+        List<OrderItem> orderItemList= new ArrayList<>();
+        for(OrderItemElement orderItemElement: evt.getOrderItems()){
+            OrderItem orderItem= new OrderItem(orderItemElement.getProduct(),orderItemElement.getQuantity());
+            orderItemList.add(orderItem);
+        }
+        orderService.createOrder(evt.getId(), evt.getCustomer(),orderItemList);
     }
 
 

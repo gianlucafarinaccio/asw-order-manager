@@ -25,11 +25,21 @@ public class OrderService {
  	public Order createOrder(String customer, String address, List<OrderItem> orderItems, double total) {
 		Order order = new Order(customer, address, orderItems, total); 
 		order = orderRepository.save(order);
-		DomainEvent event = new OrderCreatedEvent(order.getId(), order.getCustomer(),order.getAddress(),order.getTotal());
+
+
+		List<OrderItemElement> orderItemeElementList = new ArrayList<>();
+		for(OrderItem orderItem : order.getOrderItems()){
+			OrderItemElement orderItemElement = new OrderItemElement(orderItem.getProduct(),orderItem.getQuantity());
+			orderItemeElementList.add(orderItemElement);
+		}
+
+
+		DomainEvent event = new OrderCreatedEvent(order.getId(), order.getCustomer(),order.getAddress(),orderItemeElementList,order.getTotal());
 		orderEventPublisher.publish(event);
         logger.info("Ordine creato correttamente!");
 		return order;
 	}
+
 
  	public Order getOrder(Long id) {
 		Order order = orderRepository.findById(id).orElse(null);

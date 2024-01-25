@@ -2,7 +2,6 @@ package asw.ordermanager.api.event;
 
 import java.util.List;
 import asw.ordermanager.common.api.event.DomainEvent;
-import asw.ordermanager.orderservice.api.rest.OrderItemElement;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +14,7 @@ public class OrderCreatedEvent implements DomainEvent{
     private Long id;
 	private String customer; 
 	private String address;
-	private double total; 
+	private List<OrderItemElement> orderItems;
+	private double total;
 
 }

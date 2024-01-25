@@ -19,7 +19,7 @@ import java.util.stream.*;
 import java.util.logging.Logger;
 
 @Service
-public class ProductServiceRestClientAdapter implements ProductServiceClientPort {
+public class ProductServiceRestClientAdapter{
 
 	@Autowired
 	@Qualifier("loadBalancedWebClient")

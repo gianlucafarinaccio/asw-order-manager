@@ -15,6 +15,7 @@ dependencies {
 	implementation project(":order-validation-api-event")
 	implementation project(":order-manager-common-api-event")
 
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.cloud:spring-cloud-starter'
 	implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'

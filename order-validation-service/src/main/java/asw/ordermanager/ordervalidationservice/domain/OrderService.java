@@ -17,6 +17,7 @@ public class OrderService {
 
 
  	public Order createOrder(Long id, String customer, List<OrderItem> orderItems) {
+
 		Order order = new Order(id, customer, orderItems);
 		order = orderRepository.save(order);
         logger.info("Ordine replicato correttamente!");

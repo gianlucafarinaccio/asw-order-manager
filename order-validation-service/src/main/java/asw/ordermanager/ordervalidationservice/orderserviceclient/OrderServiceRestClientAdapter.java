@@ -18,7 +18,7 @@ import java.util.stream.*;
 import java.util.logging.Logger;
 
 @Service
-public class OrderServiceRestClientAdapter implements OrderServiceClientPort {
+public class OrderServiceRestClientAdapter {
 
     @Autowired
     @Qualifier("loadBalancedWebClient")

@@ -1,7 +1,6 @@
 dependencies {
 	implementation project(":order-manager-common-api-event")
-	implementation project(":order-service-api")
-	
+
 	compileOnly "org.projectlombok:lombok:${lombokVersion}"
 	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 }
