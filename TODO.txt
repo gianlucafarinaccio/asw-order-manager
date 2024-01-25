@@ -25,5 +25,5 @@ FACOLTATIVO:
 Gianluca 1 - branch support/database-refactoring
 Daniele 2
 Alexis 2
-Cardilli 3
+Cardilli 3 - branch support/microservices-containerization
 Da definire 4

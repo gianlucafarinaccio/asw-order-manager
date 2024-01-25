@@ -125,6 +125,18 @@ Alla fine, l'applicazione può essere arrestata usando lo script `terminate-java
 
 Inoltre, *Consul* può essere arrestato con lo script `stop-consul.sh`. 
 
+## Esecuzione con Docker
+
+In alternativa, è possibile eseguire quest'applicazione tramite Docker:
+
+* dalla cartella principale dell'applicazione, usare lo script `build-docker-images.sh`
+
+* usare lo script `run-order-manager-docker.sh`
+
+Per verificare che l'applicazione sia stata avviata correttamente (ci vuole circa un minuto) usare il comando `docker ps` per verificare che lo *status* dei diversi container sia *healthy* e non *starting*.
+
+Alla fine, l'applicazione può essere arrestata usando lo script `stop-and-remove-order-manager-containers.sh`.
+
 
 ## Descrizione delle attività da svolgere 
 
