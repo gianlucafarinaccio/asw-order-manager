@@ -83,14 +83,13 @@ L'applicazione *OrderManager* è composta dai seguenti microservizi:
 
 Per costruire questa applicazione: 
 
-* eseguire il comando `gradle build`
-* eseguire il comando `docker compose build` 
+* eseguire lo script `build-order-manager.sh`
 
 
 ## Esecuzione 
 
 Per avviare questa applicazione: 
-* eseguire il comando `docker compose up -d`
+* eseguire lo script `run-order-manager.sh`
 
 > Per verificare che l'applicazione sia stata avviata correttamente (ci vuole circa un minuto) usare il comando `docker ps` per verificare
 > che lo *status* dei diversi container sia *healthy* e non *starting*.
@@ -101,7 +100,7 @@ Per avviare questa applicazione:
 
 
 Per arrestare l'applicazione: 
-* eseguire il comando `docker compose down`
+* eseguire lo script `stop-order-manager.sh`
   
 ## Script
 Sono anche forniti alcuni script di esempio: 
@@ -131,24 +130,6 @@ Ed inoltre ancora:
 * lo script `do-test-3.sh` esegue alcuni ulteriori test (crea un nuovo ordine e poi esegue delle validazioni, che sono tutte non valide)
 
 * nota: questi test possono essere utilmente eseguiti in sequenza, senza eseguire prima nessuno degli altri script  
-
-<!---
-Alla fine, l'applicazione può essere arrestata usando lo script `terminate-java-processes.sh` (**da usare con cautela!**). 
-
-Inoltre, *Consul* può essere arrestato con lo script `stop-consul.sh`. 
-
-## Esecuzione con Docker
-
-In alternativa, è possibile eseguire quest'applicazione tramite Docker:
-
-* dalla cartella principale dell'applicazione, usare lo script `build-docker-images.sh`
-
-* usare lo script `run-order-manager-docker.sh`
-
-Per verificare che l'applicazione sia stata avviata correttamente (ci vuole circa un minuto) usare il comando `docker ps` per verificare che lo *status* dei diversi container sia *healthy* e non *starting*.
-
-Alla fine, l'applicazione può essere arrestata usando lo script `stop-and-remove-order-manager-containers.sh`.
---->
 
 ## Descrizione delle attività da svolgere 
 
