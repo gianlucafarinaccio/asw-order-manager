@@ -2,7 +2,7 @@
 --- 
 spring:
   application: 
-    name: order-validation-service
+    name: ordervalidationservice
 
   # POSTGRESQL
   datasource:

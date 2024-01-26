@@ -49,6 +49,9 @@ public class OrderValidationServiceRestBasedImpl implements OrderValidationServi
 		return new OrderValidation(id, order, isValid, motivation);
 	}
 
+
+	// Data una lista di OrderItem, ritorna una lista di String contenente
+	// tutti i nomi dei prodotti contenuti nell'ordine
 	private List<String> toProductNames(List<OrderItem> items) {
 		List<String> names =
 				items.stream()
@@ -57,6 +60,8 @@ public class OrderValidationServiceRestBasedImpl implements OrderValidationServi
 		return names;
 	}
 
+	// Data una lista di Product, ritorna una mappa in cui le chiavi sono i nomi
+	// dei prodotti e i valori sono i prodotti stessi
 	private Map<String,Product> toProductMap(List<Product> products) {
 		Map<String,Product> map =
 				products.stream()
