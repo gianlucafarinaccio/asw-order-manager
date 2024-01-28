@@ -125,7 +125,7 @@ Sono anche forniti alcuni script di esempio per utilizzare l'applicazione:
 
 * lo script `do-get-orders.sh` trova tutti gli ordini 
 
-* lo script `do-get-ordine.sh` trova un ordine 
+* lo script `do-get-order.sh` trova un ordine 
 
 * lo script `do-validate-order.sh` convalida un ordine 
 
@@ -150,11 +150,11 @@ Si veda la descrizione del progetto sul sito web del corso di [Architettura dei 
 
 ## Attività svolte
 
-* Introduzione di due basi di dati **PostgreSQL** rispettivamente per i servizi orderservice e productservice
-* Utilizzo di container Docker per l'esecuzione di tutti i servizi e delle basi di dati.
-* I servizi **order-service**, **product-service** ed **order-validation-service** vengono eseguiti in container Docker, utilizzando due repliche per ogni servizio.
-* Introduzione di **Kafka** come message broker per lo scambio di messaggi tra i servizi, anch'esso eseguito in un container Docker.
-* Introduzione di una terza base di dati dedicata ad **order-validation-service**, contenente solo i dati necessari alla validazione degli ordini (anch'essa eseguita in un container Docker). 
-* Utilizzo di **Docker compose** per mandare in esecuzione tutto il sistema.
-* [EXTRA] Introduzione di **volumi Docker** per le basi di dati, per mantenere i dati anche dopo l'arresto dell'applicazione.
+* Introduzione di due basi di dati **PostgreSQL** rispettivamente per i servizi order-service e product-service;
+* Utilizzo di container Docker per l'esecuzione di tutti i servizi e delle basi di dati;
+* I servizi **order-service**, **product-service** ed **order-validation-service** vengono eseguiti in container Docker, utilizzando due repliche per ogni servizio;
+* Introduzione di **Kafka** come message broker per lo scambio di messaggi tra i servizi, anch'esso eseguito in un container Docker;
+* Introduzione di una terza base di dati dedicata ad **order-validation-service**, contenente solo i dati necessari alla validazione degli ordini (anch'essa eseguita in un container Docker);
+* Utilizzo di **Docker compose** per mandare in esecuzione tutto il sistema;
+* [EXTRA] Introduzione di **volumi Docker** per le basi di dati, per mantenere i dati anche dopo l'arresto dell'applicazione;
 * [EXTRA] Introduzione di un profilo *'debug'* nel Docker compose, il quale permette l'esecuzione di due UI utili per debuggare la gestione dei dati e lo scambio di messaggi.
