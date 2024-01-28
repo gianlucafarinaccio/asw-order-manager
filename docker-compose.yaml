@@ -143,6 +143,7 @@ services:
       - pgadmin-data:/var/lib/pgadmin
     networks:
       - order-manager
+    profiles: [debug]
 
   kafka:
     image: docker.io/bitnami/kafka:3.6
@@ -151,8 +152,6 @@ services:
       - "9092:9092"
     volumes:
       - "kafka-data:/bitnami"
-      #- ./start-kafka.sh:/start-kafka.sh
-    #command: ["/bin/bash", "-c", "/start-kafka.sh || /opt/bitnami/scripts/kafka/entrypoint.sh && /opt/bitnami/scripts/kafka/run.sh"]
     environment:
       # KRaft settings
       - KAFKA_CFG_NODE_ID=0
@@ -175,9 +174,10 @@ services:
     environment:
       DYNAMIC_CONFIG_ENABLED: 'true'
     volumes:
-      - ./kafka-ui.yml:/etc/kafkaui/dynamic_config.yaml
+      - ./kafka/kafka-ui.yml:/etc/kafkaui/dynamic_config.yaml
     networks:
       - order-manager
+    profiles: [debug]
 
 volumes:
   order-service-db-data:

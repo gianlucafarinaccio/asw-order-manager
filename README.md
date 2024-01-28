@@ -3,10 +3,10 @@
 Progetto del corso di Analisi e progettazione del software per l'anno accademico 2023-2024. 
 
 Realizzato da:
-- Matteo Cardilli
-- Gianluca Farinaccio
-- Daniele Ferneti
-- Alexis Martinez.
+- Matteo Cardilli - <https://github.com/TheBlind11>
+- Gianluca Farinaccio - <https://github.com/isRoutine>
+- Daniele Ferneti - <https://github.com/DanieleFerneti>
+- Alexis Martinez - <https://github.com/osvaldomar144>
 
 ## Descrizione di questo progetto 
 
@@ -98,12 +98,26 @@ Per avviare questa applicazione:
 > L'operazione di inizializzazione è necessaria soltanto al primo avvio dell'applicazione. Una volta inizializzati, tutti i dati relativi ai microservizi
 > verranno salvati in modo persistente all'interno di volumi Docker.
 
-
 Per arrestare l'applicazione: 
 * eseguire lo script `stop-order-manager.sh`
-  
+
+### Esecuzione con profilo debug
+In alternativa è possibile eseguire l'applicazione con un profilo di debug che fornisce due UI, nello specifico per Kafka e Postgres, che aiutano a visualizzare i dati contenuti nei db ed i messaggi scambiati tra i servizi.
+
+Per avviare con profilo di debug: 
+* eseguire il comando `docker compose --profile debug up -d`
+
+Per arrestare l'applicazione (inclusi gli strumenti di debug): 
+* eseguire il comando `docker compose --profile debug down -d`
+
+### Rimozione dei dati
+Come specificato sopra, una volta inizializzate le basi di dati, i dati vengono salvati in modo permanente all'interno di opportuni volumi Docker.  
+
+Per eliminare i dati posti all'interno dei volumi docker: 
+* eseguire lo script `remove-order-manager-data.sh` 
+
 ## Script
-Sono anche forniti alcuni script di esempio: 
+Sono anche forniti alcuni script di esempio per utilizzare l'applicazione: 
 
 * lo script `do-get-products.sh` trova tutti i prodotti 
 
@@ -132,5 +146,15 @@ Ed inoltre ancora:
 * nota: questi test possono essere utilmente eseguiti in sequenza, senza eseguire prima nessuno degli altri script  
 
 ## Descrizione delle attività da svolgere 
-
 Si veda la descrizione del progetto sul sito web del corso di [Architettura dei sistemi software](http://cabibbo.inf.uniroma3.it/asw/).
+
+## Attività svolte
+
+* Introduzione di due basi di dati **PostgreSQL** rispettivamente per i servizi orderservice e productservice
+* Utilizzo di container Docker per l'esecuzione di tutti i servizi e delle basi di dati.
+* I servizi **order-service**, **product-service** ed **order-validation-service** vengono eseguiti in container Docker, utilizzando due repliche per ogni servizio.
+* Introduzione di **Kafka** come message broker per lo scambio di messaggi tra i servizi, anch'esso eseguito in un container Docker.
+* Introduzione di una terza base di dati dedicata ad **order-validation-service**, contenente solo i dati necessari alla validazione degli ordini (anch'essa eseguita in un container Docker). 
+* Utilizzo di **Docker compose** per mandare in esecuzione tutto il sistema.
+* [EXTRA] Introduzione di **volumi Docker** per le basi di dati, per mantenere i dati anche dopo l'arresto dell'applicazione.
+* [EXTRA] Introduzione di un profilo *'debug'* nel Docker compose, il quale permette l'esecuzione di due UI utili per debuggare la gestione dei dati e lo scambio di messaggi.

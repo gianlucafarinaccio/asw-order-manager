@@ -1,5 +1,0 @@
-kafka:
-  clusters:
-    -
-      name: Order Manager Kafka
-      bootstrapServers: kafka:9092
