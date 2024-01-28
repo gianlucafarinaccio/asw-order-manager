@@ -1,20 +1,32 @@
 package asw.ordermanager.productservice.domain;
 
+import asw.ordermanager.api.event.ProductCreatedEvent;
+import asw.ordermanager.api.event.UpdateStockLevelEvent;
+import asw.ordermanager.common.api.event.DomainEvent;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.*; 
+import java.util.*;
+import java.util.logging.Logger;
 
 @Service
 public class ProductService {
 
+	private final Logger logger = Logger.getLogger(this.getClass().toString());
+
 	@Autowired
 	private ProductRepository productRepository;
+
+	@Autowired
+	private ProductEventPublisher productEventPublisher;
 
  	public Product createProduct(String name, String category, int stockLevel, double price) {
 		Product product = new Product(name, category, stockLevel, price); 
 		product = productRepository.save(product);
+		DomainEvent event = new ProductCreatedEvent(product.getName(), product.getCategory(), product.getStockLevel(), product.getPrice());
+		productEventPublisher.publish(event);
+		logger.info("Prodotto creato correttamente");
 		return product;
 	}
 
@@ -42,6 +54,9 @@ public class ProductService {
 		Product product = getProduct(name); 
 		product.setStockLevel(product.getStockLevel() + stockLevelVariation);
 		product = productRepository.save(product);
+		DomainEvent event = new UpdateStockLevelEvent(product.getName(), stockLevelVariation);
+		productEventPublisher.publish(event);
+		logger.info("Prodotto aggiornato correttamente");
 		return product;
 	}
 

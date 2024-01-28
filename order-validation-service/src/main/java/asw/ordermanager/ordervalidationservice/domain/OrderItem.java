@@ -1,13 +1,15 @@
 package asw.ordermanager.ordervalidationservice.domain;
 
-import lombok.*; 
+import jakarta.persistence.Embeddable;
+import lombok.*;
 
-/* Ordine. */ 
-@Data 
+/* Ordine. */
+@Embeddable
+@Data
 @NoArgsConstructor @AllArgsConstructor
 public class OrderItem {
 
-	private String product; 
-	private int quantity; 
-	
+    private String product;
+    private int quantity;
+
 }

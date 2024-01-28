@@ -90,6 +90,25 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=order-validation-service
       - ASW_ORDERMANAGER_ORDERVALIDATIONSERVICE_INSTANCENAME=ov1
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://order-validation-service-db:5432/ordervalidationservice
+    depends_on:
+      - "consul"
+      - "order-validation-service-db"
+    networks:
+      - order-manager
+
+  order-validation-service-db:
+    container_name: order-validation-service-db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - order-validation-service-db-data:/var/lib/postgresql/data
+      - "./postgres/order-validation-service:/docker-entrypoint-initdb.d"
+    ports:
+      - "5432"
     depends_on:
       - "consul"
     networks:
@@ -111,8 +130,64 @@ services:
     networks:
       - order-manager
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: asw-project@admin.com
+      PGADMIN_DEFAULT_PASSWORD: postgres
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    networks:
+      - order-manager
+
+  kafka:
+    image: docker.io/bitnami/kafka:3.6
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    volumes:
+      - "kafka-data:/bitnami"
+      #- ./start-kafka.sh:/start-kafka.sh
+    #command: ["/bin/bash", "-c", "/start-kafka.sh || /opt/bitnami/scripts/kafka/entrypoint.sh && /opt/bitnami/scripts/kafka/run.sh"]
+    environment:
+      # KRaft settings
+      - KAFKA_CFG_NODE_ID=0
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
+      # Listeners
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://kafka:9092,CONTROLLER://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+    networks:
+      - order-manager
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    ports:
+      - 8989:8080
+    environment:
+      DYNAMIC_CONFIG_ENABLED: 'true'
+    volumes:
+      - ./kafka-ui.yml:/etc/kafkaui/dynamic_config.yaml
+    networks:
+      - order-manager
+
 volumes:
   order-service-db-data:
     name: order-service-db-data
   product-service-db-data:
     name: product-service-db-data
+  order-validation-service-db-data:
+    name: order-validation-service-db-data
+  pgadmin-data:
+    name: pgadmin-data-ok
+  kafka-data:
+    name: kafka-data
+    driver: local
