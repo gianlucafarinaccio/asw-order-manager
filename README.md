@@ -94,10 +94,6 @@ Per avviare questa applicazione:
 > Per verificare che l'applicazione sia stata avviata correttamente (ci vuole circa un minuto) usare il comando `docker ps` per verificare
 > che lo *status* dei diversi container sia *healthy* e non *starting*.
  
-* per inizializzare le basi di dati con alcuni dati di esempio, eseguire gli script `do-init-products.sh` e `do-init-orders.sh` <br>
-> L'operazione di inizializzazione è necessaria soltanto al primo avvio dell'applicazione. Una volta inizializzati, tutti i dati relativi ai microservizi
-> verranno salvati in modo persistente all'interno di volumi Docker.
-
 Per arrestare l'applicazione: 
 * eseguire lo script `stop-order-manager.sh`
 
@@ -110,14 +106,15 @@ Per avviare con profilo di debug:
 Per arrestare l'applicazione (inclusi gli strumenti di debug): 
 * eseguire il comando `docker compose --profile debug down -d`
 
-### Rimozione dei dati
-Come specificato sopra, una volta inizializzate le basi di dati, i dati vengono salvati in modo permanente all'interno di opportuni volumi Docker.  
-
-Per eliminare i dati posti all'interno dei volumi docker: 
-* eseguire lo script `remove-order-manager-data.sh` 
-
 ## Script
 Sono anche forniti alcuni script di esempio per utilizzare l'applicazione: 
+
+
+* per inizializzare le basi di dati con alcuni dati di esempio, eseguire gli script `do-init-products.sh` e `do-init-orders.sh` <br>
+> L'operazione di inizializzazione è necessaria soltanto al primo avvio dell'applicazione. Una volta inizializzati, tutti i dati
+> verranno salvati in modo persistente all'interno di volumi Docker.
+  
+* lo script `remove-order-manager-data.sh` elimina tutti i dati posti all'interno dei volumi docker: 
 
 * lo script `do-get-products.sh` trova tutti i prodotti 
 
